@@ -2,20 +2,27 @@ package com.cybersergi.cryptoanalyzer.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "candles")
 @Data
+@RequiredArgsConstructor
 public class Candle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private float c_high;
-    private float c_open;
-    private float c_close;
-    private float c_low;
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "crypto_id", nullable = false)
+    private Crypto crypto;
+    private Float c_high;
+    private Float c_open;
+    private Float c_close;
+    private Float c_low;
     private Date c_timestamp;
+    private String isStruct;
 }

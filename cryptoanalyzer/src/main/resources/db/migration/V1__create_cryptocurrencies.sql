@@ -1,0 +1,4 @@
+CREATE TABLE cryptocurrencies (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(8) NOT NULL UNIQUE
+)

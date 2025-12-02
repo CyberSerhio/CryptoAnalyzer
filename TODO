@@ -1,0 +1,11 @@
+#TODO
+For market analysis on the 15m timeframe and higher:
+
+1. Implement a JSON parser for Bybit data
+
+2. Create a MarketAnalysis class
+
+3. Save structured data (LH, LL, etc.) from the MarketAnalysis class into the database
+
+4. Return the data to the client via the CandleController
+
