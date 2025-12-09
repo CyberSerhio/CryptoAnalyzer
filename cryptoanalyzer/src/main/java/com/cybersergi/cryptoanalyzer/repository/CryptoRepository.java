@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CryptoRepository extends JpaRepository<Crypto, Long> {
     Crypto findById(Crypto crypto);
+    Crypto findByTitle(String title);
 }

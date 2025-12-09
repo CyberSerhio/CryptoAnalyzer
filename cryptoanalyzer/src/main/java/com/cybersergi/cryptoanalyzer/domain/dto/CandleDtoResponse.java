@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -12,11 +11,13 @@ import java.util.Date;
 public class CandleDtoResponse {
 
     private Long id;
-    private Float c_high;
-    private Float c_open;
-    private Float c_close;
-    private Float c_low;
-    private Date c_timestamp;
+    private Long cTimestamp;
+    private Float cOpen;
+    private Float cHigh;
+    private Float cLow;
+    private Float cClose;
+    private Float volume;
     private String isStruct;
+
 
 }
