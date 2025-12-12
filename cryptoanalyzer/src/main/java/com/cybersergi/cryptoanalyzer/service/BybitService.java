@@ -74,27 +74,19 @@ public class BybitService {
             crypto = createCrypto(cleanSymbol);
             urlString = createUrlString(cleanSymbol, interval, limit);
             jsonObject = sendRequest(urlString);
-            if (!jsonObject.has("result")) {
-                throw new RuntimeException("Bybit API error: " + jsonObject);
-            }
-            saveCandles(jsonObject.getJSONArray("result"), crypto);
+            saveCandles(jsonObject.getJSONArray("list"), crypto);
         } else {
             Long newLimit = updateCandles(crypto, Short.parseShort(interval));
         }
 
-
-        if (!jsonObject.has("result")) {
-            throw new RuntimeException("Bybit API error: " + jsonObject);
-        }
-
-        return jsonObject.getJSONArray("result");
+        return jsonObject.getJSONArray("list");
     }
 
 
     private Long updateCandles(Crypto crypto, Short interval) {
-        Candle lastCandle = candleRepository.findTopByCryptoOrderByCTimestampDesc(crypto);
+        Candle lastCandle = candleRepository.findTopByCryptoOrderByTimestampDesc(crypto);
         if (lastCandle != null) {
-            Long time = (Instant.now().toEpochMilli() - lastCandle.getCTimestamp())/60000;
+            Long time = (Instant.now().toEpochMilli() - lastCandle.getTimestamp())/60000;
             if (time > interval) {
                 return time / interval;
             }
@@ -113,7 +105,7 @@ public class BybitService {
             HttpClient client = HttpClient.newHttpClient();
 //                        Catch response from Bybit
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return new JSONObject(response.body());
+            return new JSONObject(response.body()).getJSONObject("result");
         } catch (URISyntaxException | IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

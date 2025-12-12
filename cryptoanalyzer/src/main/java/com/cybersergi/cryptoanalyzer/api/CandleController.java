@@ -17,9 +17,9 @@ public class CandleController {
 
     @GetMapping("/api/symbol")
     public JSONArray getCandles(@RequestParam String symbols,
-                                 @RequestParam String limit,
-                                 @RequestParam String interval) {
-        return bybitService.getBybitData(symbols, limit, interval);
+                                 @RequestParam String interval,
+                                 @RequestParam String limit) {
+        return bybitService.getBybitData(symbols, interval, limit);
     }
 
 }

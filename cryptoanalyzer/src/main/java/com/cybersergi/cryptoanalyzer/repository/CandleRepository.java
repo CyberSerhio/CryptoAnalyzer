@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface CandleRepository extends JpaRepository<Candle, Long> {
     List<Candle> findAll();
-    Candle findTopByCryptoOrderByCTimestampDesc(Crypto crypto);
+    Candle findTopByCryptoOrderByTimestampDesc(Crypto crypto);
 }

@@ -19,11 +19,11 @@ public class Candle {
     @ManyToOne
     @JoinColumn(name = "crypto_id", nullable = false)
     private Crypto crypto;
-    private Long cTimestamp;
-    private Float cOpen;
-    private Float cHigh;
-    private Float cLow;
-    private Float cClose;
+    private Long timestamp;
+    private Float open;
+    private Float high;
+    private Float low;
+    private Float close;
     private Float volume;
     private String isStruct;
 }
